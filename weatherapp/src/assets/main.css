@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  background-color: lightblue;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3em;
+}
+
+p {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+p.weathertext {
+  font-size: 2em;
+}
+
+input {
+  text-align: center;
+  display: block;
+  width: 300px;
+  margin: 20px auto;
+  padding: 10px 45px;
+  background-size: 30px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+#box {
+  border-radius: 25px;
+  background: #FFCE8C;
+  height: 25em; 
+  width: 35em;
+  padding: 10px;
+  margin: auto;
+}
+
+#weatherbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-input-wrapper {
+  width: 300px;
+  display: block;
+  margin: auto;
+}
+
+@media (max-width: 780px) {
+  h1 {
+    text-align: center;
+    font-size: 2.5em;
+  }
+
+  #box {
+    border-radius: 25px;
+    background: #FFCE8C;
+    height: 25em; 
+    width: 25em;
+    padding: 10px;
+    margin: auto;
+  }
+}
