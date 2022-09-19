@@ -3,11 +3,11 @@ const express = require("express");
 const router = express.Router();
 require("dotenv").config();
 
-router.get("/saa", async (req, res) => {
-  //let city = req.body.city;
-  let apikey = process.env.WEATHERKEY
+router.post("/saa", async (req, res) => {
+  const city = req.body.city ? req.body.city : "";
+  const apikey = process.env.WEATHERKEY
   try {
-    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=helsinki&appid=${apikey}&lang=fi&units=metric`);
+    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&lang=fi&units=metric`);
     //console.log(response.data);
     console.log(response.data.weather[0]);
     res.json(response.data);
