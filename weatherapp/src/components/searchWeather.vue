@@ -1,8 +1,11 @@
 <template>
-  <SearchInput v-model="city" class="search-input-wrapper"/>
+  <div class="container">
+    <SearchInput v-model="city" class="search-input-wrapper" />
+    <button @click="getWeather">Etsi</button>
+  </div> <br />
   <div id="box">
-    <b><p class="weathertext">Tämän hetkinen sää:</p></b>
     <div v-if="weather">
+      <b><p class="weathertext">Tämän hetkinen sää:</p></b>
       <p>{{ weather.name }}</p>
       <div id="weatherbox">
         <p>{{ weatherinformation.description }}</p>
@@ -14,50 +17,44 @@
       <p>{{ weathermain.temp }} °C</p>
     </div>
     <div v-else>
-      <div id="box">
-        <p>No mutta jonkin on nytten pielessä :D</p>
-      </div>
+      <p>Ei mitään :D</p>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
 import axios from "axios";
-import SearchInput from 'vue-search-input'
-import 'vue-search-input/dist/styles.css'
-const city = ref('')
+import SearchInput from "vue-search-input";
+import "vue-search-input/dist/styles.css";
 
 export default {
   components: {
-    SearchInput
-  },
-  setup() {
-    return {
-      city
-    }
+    SearchInput,
   },
   data() {
     return {
       city: "",
       weather: {},
       weatherinformation: {},
-      weathermain: {}
+      weathermain: {},
     };
   },
-  computed() {
-
-  },
-  async mounted() {
-    try {
-      const response = await axios.get("http://localhost:3001/saa");
-      this.weather = response.data;
-      this.weatherinformation = response.data.weather[0];
-      this.weathermain = response.data.main
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
-    }
+  methods: {
+    async getWeather() {
+      try {
+        const response = await axios.post("http://localhost:3001/saa", {
+          city: this.city,
+        });
+        this.weather = response.data;
+        this.weatherinformation = response.data.weather[0];
+        this.weathermain = response.data.main;
+        console.log(response.data);
+      } catch (err) {
+        console.log(err);
+        console.log(err.response);
+      }
+      console.log("city", city);
+    },
   },
 };
 </script>
