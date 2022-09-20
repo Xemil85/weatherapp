@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  webapp:
+    restart: unless-stopped
+    build: .
+    ports:
+      - 3001:${PORT}
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - node_network
+
+  ## nginx proxy
+  proxy:
+    restart: unless-stopped
+    image: nginx
+    ports: 
+      - 80:${NGINX_PORT}
+    depends_on:
+      - webapp
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    networks:
+      - node_network
+  
+networks:
+  node_network:
