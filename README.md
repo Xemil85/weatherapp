@@ -9,5 +9,5 @@ Then when you have files then we can install needed depencies for weatherapp and
 `yarn install`
 
 before we start backend we have to make .env file and needed variables are .env.example file. <br>
-Most important variable is `WEATHERKEY` that you can get openweathermap website but you need to sign up.
+Most important variable is `WEATHERKEY` that you can get openweathermap website but you need to sign up to get API key.
 https://openweathermap.org/
