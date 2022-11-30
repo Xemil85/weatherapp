@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 require("dotenv").config();
 
-router.post("/saa", async (req, res) => {
+router.post("/saa", async (req, res, next) => {
   const city = req.body.city ? req.body.city : "";
   const apikey = process.env.WEATHERKEY;
   try {
@@ -17,7 +17,7 @@ router.post("/saa", async (req, res) => {
     console.log(responseWeather.data);
     res.json(responseWeather.data);
   } catch (err) {
-    return console.log(err);
+    return next(err);
   }
 });
 
